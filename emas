@@ -1,0 +1,30 @@
+//@version=4
+//settings by m88
+
+//EMA1
+study(title="Moving Average Exponential", shorttitle="Goods", overlay=true, resolution="")
+len = input(34, minval=1, title="Length")
+src = input(high, title="Source")
+offset = input(title="Offset", type=input.integer, defval=0, minval=-500, maxval=500)
+out = ema(src, len)
+plot(out, title="EMA", color=color.black, offset=offset)
+
+//EMA2
+len2 = input(36, minval=1, title="Length2")
+src2 = input(close, title="Source2")
+offset2 = input(title="Offset2", type=input.integer, defval=0, minval=-500, maxval=500)
+out2 = ema(src2, len2)
+plot(out2, title="EMA2", color=color.teal, offset=offset2, linewidth=2)
+
+//EMA3
+len3 = input(39, minval=1, title="Length3")
+src3 = input(low, title="Source3")
+offset3 = input(title="Offset3", type=input.integer, defval=0, minval=-500, maxval=500)
+out3 = ema(src3, len3)
+plot(out3, title="EMA3", color=color.black, offset=offset3)
+
+//fill
+upperema = plot(out, color=color.black, title='upperEMA1')
+lowerema = plot(out3, color=color.black, title='lowerEMA1')
+
+fill(upperema, lowerema, color=color.black)
